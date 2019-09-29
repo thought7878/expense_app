@@ -10,6 +10,23 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('home'),
         ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              child: Card(
+                color: Colors.blue,
+                child: Text('Card A'),
+              ),
+              width: double.infinity,
+            ),
+            Card(
+              color: Colors.red,
+              child: Text('Card B'),
+            ),
+          ],
+        ),
       ),
     );
   }
