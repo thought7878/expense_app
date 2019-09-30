@@ -52,11 +52,17 @@ class HomePage extends StatelessWidget {
                         border: Border.all(color: Colors.blue, width: 2),
                       ),
                       padding: EdgeInsets.all(4),
-                      child: Text(tx.price.toString()),
+                      child: Text(
+                        tx.price.toString(),
+                        style: TextStyle(
+                            color: Colors.pink, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Column(
                       children: <Widget>[
-                        Text(tx.title),
+                        Text(
+                          tx.title,
+                        ),
                         Text(tx.date.toString()),
                       ],
                     ),
