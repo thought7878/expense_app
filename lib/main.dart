@@ -35,15 +35,28 @@ class HomePage extends StatelessWidget {
           Container(
             child: Card(
               color: Colors.blue,
-              child: Text('Card A'),
+              child: Text('Chart'),
+              elevation: 5,
             ),
             width: double.infinity,
           ),
           Column(
             children: txs.map((tx) {
               return Card(
-                color: Colors.red,
-                child: Text(tx.title),
+                // color: Colors.red,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(tx.price.toString()),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Text(tx.title),
+                        Text(tx.date.toString()),
+                      ],
+                    ),
+                  ],
+                ),
               );
             }).toList(),
           ),
