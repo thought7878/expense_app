@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             child: Card(
@@ -42,6 +42,28 @@ class HomePage extends StatelessWidget {
               elevation: 5,
             ),
             width: double.infinity,
+          ),
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'price'),
+                  ),
+                  FlatButton(
+                    child: Text('Submit'),
+                    textColor: Colors.purple,
+                    // color: Colors.purple,
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
           ),
           Column(
             children: txs.map((tx) {
