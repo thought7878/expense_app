@@ -1,7 +1,10 @@
 import 'package:expense_app/Transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() => runApp(MyApp());
+void main() =>
+    initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
 
 class MyApp extends StatelessWidget {
   @override
@@ -53,7 +56,7 @@ class HomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(4),
                       child: Text(
-                        tx.price.toString(),
+                        '\$${tx.price}',
                         style: TextStyle(
                           color: Colors.purple,
                           fontWeight: FontWeight.bold,
@@ -72,7 +75,8 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat('yyyy-MM-dd HH:mm:ss').format(tx.date),
+                          // DateFormat.yMMMMd('zh_CN').format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
