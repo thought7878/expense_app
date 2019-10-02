@@ -1,7 +1,8 @@
-import 'package:expense_app/Transaction.dart';
+import 'package:expense_app/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'widgets/transaction_list.dart';
 
 void main() =>
     initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
@@ -21,13 +22,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Transaction> txs = [
-      Transaction(
-          id: 'tx1', title: 'shoes', price: 49.99, date: DateTime.now()),
-      Transaction(
-          id: 'tx2', title: 'chickens', price: 19.99, date: DateTime.now()),
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text('home'),
@@ -44,78 +38,7 @@ class HomePage extends StatelessWidget {
             ),
             width: double.infinity,
           ),
-          Card(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(labelText: 'title'),
-                    controller: titleController,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'price'),
-                    controller: priceController,
-                  ),
-                  FlatButton(
-                    child: Text('Submit'),
-                    textColor: Colors.purple,
-                    // color: Colors.purple,
-                    onPressed: () {
-                      print(titleController.text);
-                      print(priceController.text);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: txs.map((tx) {
-              return Card(
-                // color: Colors.red,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.purple, width: 2),
-                      ),
-                      padding: EdgeInsets.all(4),
-                      child: Text(
-                        '\$${tx.price}',
-                        style: TextStyle(
-                          color: Colors.purple,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          tx.title,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          DateFormat('yyyy-MM-dd HH:mm:ss').format(tx.date),
-                          // DateFormat.yMMMMd('zh_CN').format(tx.date),
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          ),
+          UserTransaction(),
         ],
       ),
     );
