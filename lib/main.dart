@@ -2,8 +2,6 @@ import 'package:expense_app/widgets/user_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'widgets/transaction_list.dart';
-
 void main() =>
     initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
 
