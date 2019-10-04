@@ -12,7 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Expense App',
       home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.green,
+      ),
     );
   }
 }
@@ -54,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('home'),
+        title: Text('Expense App'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
