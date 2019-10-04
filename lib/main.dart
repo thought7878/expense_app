@@ -1,6 +1,9 @@
-import 'package:expense_app/widgets/user_transaction.dart';
+import 'package:expense_app/widgets/new_transaction.dart';
+import 'package:expense_app/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'models/Transaction.dart';
 
 void main() =>
     initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
@@ -14,9 +17,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  final titleController = TextEditingController();
-  final priceController = TextEditingController();
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Transaction> txs = [
+    Transaction(id: 'tx1', title: 'shoes', price: 49.99, date: DateTime.now()),
+    Transaction(
+        id: 'tx2', title: 'chickens', price: 19.99, date: DateTime.now()),
+  ];
+
+  void _showNewTxSheet(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewTransaction(_addNewTransaction);
+      },
+    );
+  }
+
+  void _addNewTransaction(String title, double price) {
+    final tx = Transaction(
+      title: title,
+      price: price,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+    setState(() {
+      txs.add(tx);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +58,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () => _showNewTxSheet(context),
           ),
         ],
       ),
@@ -43,13 +75,15 @@ class HomePage extends StatelessWidget {
               ),
               width: double.infinity,
             ),
-            UserTransaction(),
+            TransactionList(
+              transactions: txs,
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => _showNewTxSheet(context),
       ),
     );
   }
