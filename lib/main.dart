@@ -46,9 +46,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Transaction> txs = [
-    Transaction(id: 'tx1', title: 'shoes', price: 49.99, date: DateTime.now()),
-    Transaction(
-        id: 'tx2', title: 'chickens', price: 19.99, date: DateTime.now()),
+    // Transaction(id: 'tx1', title: 'shoes', price: 49.99, date: DateTime.now()),
+    // Transaction(
+    //     id: 'tx2', title: 'chickens', price: 19.99, date: DateTime.now()),
   ];
 
   void _showNewTxSheet(BuildContext ctx) {
