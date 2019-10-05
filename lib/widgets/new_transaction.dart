@@ -18,10 +18,10 @@ class _NewTransactionState extends State<NewTransaction> {
   void _submitTx() {
     final title = titleController.text;
     final price = double.parse(priceController.text);
-    if (title.isEmpty || price <= 0) {
+    if (title.isEmpty || price <= 0 || _chosenDateTime == null) {
       return;
     }
-    widget.addTx(title, price);
+    widget.addTx(title, price, _chosenDateTime);
     Navigator.of(context).pop();
   }
 
