@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.green,
+        // errorColor: Colors.green,
         fontFamily: 'Quicksand',
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -74,6 +75,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void deleteTransaction(String id) {
+    setState(() {
+      txs.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   List<Transaction> get _recentTransactions {
     return txs.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
@@ -106,6 +115,7 @@ class _HomePageState extends State<HomePage> {
             ),
             TransactionList(
               transactions: txs,
+              deleteTransaction: deleteTransaction,
             ),
           ],
         ),
