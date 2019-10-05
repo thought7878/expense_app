@@ -10,60 +10,56 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: transactions.isEmpty
-          ? Column(
-              children: <Widget>[
-                Text('No transation!'),
-                SizedBox(
-                  height: 10,
+    return transactions.isEmpty
+        ? Column(
+            children: <Widget>[
+              Text('No transation!'),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 200,
+                child: Image.asset(
+                  'assets/images/waiting.png',
+                  fit: BoxFit.cover,
                 ),
-                Container(
-                  height: 200,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
-            )
-          : ListView.builder(
-              itemCount: transactions.length,
-              itemBuilder: (cxt, index) {
-                return Card(
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-                  elevation: 0,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: FittedBox(
-                            child: Text(
-                                '\$${transactions[index].price.toStringAsFixed(0)}')),
-                      ),
-                    ),
-                    title: Text(
-                      transactions[index].title,
-                      style: Theme.of(context).textTheme.title,
-                    ),
-                    subtitle: Text(
-                      DateFormat.yMd('zh_CN').format(transactions[index].date),
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        color: Theme.of(context).errorColor,
-                      ),
-                      onPressed: () =>
-                          deleteTransaction(transactions[index].id),
+              ),
+            ],
+          )
+        : ListView.builder(
+            itemCount: transactions.length,
+            itemBuilder: (cxt, index) {
+              return Card(
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+                elevation: 0,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: FittedBox(
+                          child: Text(
+                              '\$${transactions[index].price.toStringAsFixed(0)}')),
                     ),
                   ),
-                );
-              },
-            ),
-    );
+                  title: Text(
+                    transactions[index].title,
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                  subtitle: Text(
+                    DateFormat.yMd('zh_CN').format(transactions[index].date),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                    onPressed: () => deleteTransaction(transactions[index].id),
+                  ),
+                ),
+              );
+            },
+          );
   }
 
   Widget customListItem(BuildContext context, int index) {

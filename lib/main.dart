@@ -91,31 +91,43 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Expense App',
-          // style: TextStyle(fontFamily: 'OpenSans'),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _showNewTxSheet(context),
-          ),
-        ],
+    final appBar = AppBar(
+      title: Text(
+        'Expense App',
+        // style: TextStyle(fontFamily: 'OpenSans'),
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _showNewTxSheet(context),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.4,
               child: Chart(_recentTransactions),
               width: double.infinity,
             ),
-            TransactionList(
-              transactions: txs,
-              deleteTransaction: deleteTransaction,
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.6,
+              child: TransactionList(
+                transactions: txs,
+                deleteTransaction: deleteTransaction,
+              ),
             ),
           ],
         ),
