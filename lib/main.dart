@@ -2,12 +2,17 @@ import 'package:expense_app/widgets/chart.dart';
 import 'package:expense_app/widgets/new_transaction.dart';
 import 'package:expense_app/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'models/Transaction.dart';
 
-void main() =>
-    initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
+void main() {
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
+  initializeDateFormatting("zh_CN", null).then((_) => runApp(MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override
